@@ -1,8 +1,10 @@
+import TiltCard from "./TiltCard";
 import { ArrowUpRight, Play } from "lucide-react";
 import { ProjectLinks } from "./Shared";
 export default function ProjectCard({ project, index, onSelect }) {
   return (
-    <article
+    <TiltCard
+      as="article"
       className="project-card"
       style={{ "--project-color": project.color }}
     >
@@ -52,6 +54,6 @@ export default function ProjectCard({ project, index, onSelect }) {
         </button>
         <ProjectLinks project={project} />
       </div>
-    </article>
+    </TiltCard>
   );
 }

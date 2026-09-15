@@ -1,9 +1,15 @@
+import AnimatedSection from "./AnimatedSection";
 import { Code2, Layers3, GitBranch, ArrowUpRight } from "lucide-react";
 import { profile } from "../config/profile";
 import { SectionHeading } from "./Shared";
 export default function About() {
   return (
-    <section id="about" className="section about">
+    <AnimatedSection
+      as="section"
+      variant="slide"
+      id="about"
+      className="section about"
+    >
       <SectionHeading
         eyebrow="BEHIND THE SCENES"
         title="A little about the developer."
@@ -50,6 +56,6 @@ export default function About() {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Reduced motion verification</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Development-only harness. Emulate the preference before React initializes.
+      const nativeMatchMedia = window.matchMedia.bind(window);
+      window.matchMedia = (query) =>
+        query.includes("prefers-reduced-motion")
+          ? {
+              matches:
+                query.includes("reduce") && !query.includes("no-preference"),
+              media: query,
+              addEventListener() {},
+              removeEventListener() {},
+              addListener() {},
+              removeListener() {},
+            }
+          : nativeMatchMedia(query);
+    </script>
+    <script type="module">
+      await import("/src/main.jsx");
+      // Exercise the application's actual reduced-motion CSS rules as well as its hooks.
+      const style = document.createElement("style");
+      const rules = [...document.styleSheets].flatMap((sheet) => [
+        ...sheet.cssRules,
+      ]);
+      style.textContent = rules
+        .filter(
+          (rule) => rule.conditionText === "(prefers-reduced-motion: reduce)",
+        )
+        .flatMap((rule) => [...rule.cssRules].map((child) => child.cssText))
+        .join("\n");
+      document.head.append(style);
+    </script>
+  </body>
+</html>

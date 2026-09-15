@@ -1,3 +1,5 @@
+import TiltCard from "./TiltCard";
+import AnimatedSection from "./AnimatedSection";
 import { Code2, Server, Database, Terminal, Workflow } from "lucide-react";
 import { skills } from "../data/skills";
 import { SectionHeading } from "./Shared";
@@ -10,7 +12,12 @@ const icons = {
 };
 export default function Skills() {
   return (
-    <section id="skills" className="section skills">
+    <AnimatedSection
+      as="section"
+      variant="rise"
+      id="skills"
+      className="section skills"
+    >
       <SectionHeading
         eyebrow="MY DEVELOPER TOOLKIT"
         title="The stack behind the stories."
@@ -27,7 +34,7 @@ export default function Skills() {
               </div>
               <div className="skill-row">
                 {category.items.map((item, index) => (
-                  <div className="skill-card" key={item}>
+                  <TiltCard className="skill-card" strength={4} key={item}>
                     <span className={`tech-symbol tech-${i}`}>
                       {item === "React.js"
                         ? "⚛"
@@ -42,13 +49,13 @@ export default function Skills() {
                                 : item.slice(0, 2)}
                     </span>
                     <span>{item}</span>
-                  </div>
+                  </TiltCard>
                 ))}
               </div>
             </div>
           );
         })}
       </div>
-    </section>
+    </AnimatedSection>
   );
 }

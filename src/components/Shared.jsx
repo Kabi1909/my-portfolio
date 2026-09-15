@@ -1,3 +1,4 @@
+import { motion, useReducedMotion } from "framer-motion";
 import { Github, Linkedin, ArrowUpRight } from "lucide-react";
 import { profile } from "../config/profile";
 export function ExternalLink({ href, children, className = "", ...props }) {
@@ -28,14 +29,31 @@ export function SocialLinks({ labels = false }) {
   );
 }
 export function SectionHeading({ eyebrow, title, children }) {
+  const reduced = useReducedMotion();
   return (
-    <div className="section-heading">
+    <motion.div
+      className="section-heading"
+      initial={reduced ? false : { opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+    >
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
+        <motion.span
+          className="heading-accent"
+          initial={{ scaleX: reduced ? 1 : 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{
+            delay: reduced ? 0 : 0.2,
+            duration: reduced ? 0 : 0.65,
+          }}
+        />
       </div>
       {children}
-    </div>
+    </motion.div>
   );
 }
 export function ProjectLinks({ project }) {

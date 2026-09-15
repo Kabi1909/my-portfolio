@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useIsPresent } from "framer-motion";
 import { X, Check, Code2 } from "lucide-react";
 import { ProjectLinks } from "./Shared";
 export default function ProjectModal({ project, onClose }) {
   const dialog = useRef(null);
+  const reduced = useReducedMotion();
+  const present = useIsPresent();
   useEffect(() => {
     const el = dialog.current;
     const previous = document.activeElement;
@@ -17,9 +19,13 @@ export default function ProjectModal({ project, onClose }) {
     };
   }, []);
   return (
-    <dialog
+    <motion.dialog
       ref={dialog}
-      className="project-modal"
+      className={`project-modal ${present ? "" : "is-closing"}`}
+      initial={{ opacity: 0, scale: reduced ? 1 : 0.92, y: reduced ? 0 : 24 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: reduced ? 1 : 0.96, y: reduced ? 0 : 16 }}
+      transition={{ duration: reduced ? 0 : 0.28, ease: [0.22, 1, 0.36, 1] }}
       aria-labelledby="modal-title"
       onCancel={(e) => {
         e.preventDefault();
@@ -30,9 +36,9 @@ export default function ProjectModal({ project, onClose }) {
       }}
     >
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: reduced ? 0 : 12 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 15 }}
+        exit={{ opacity: 0, y: reduced ? 0 : 8 }}
         className="modal-inner"
       >
         <button
@@ -85,6 +91,6 @@ export default function ProjectModal({ project, onClose }) {
           )}
         </div>
       </motion.div>
-    </dialog>
+    </motion.dialog>
   );
 }

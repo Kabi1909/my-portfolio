@@ -1,6 +1,14 @@
-import { useRef } from "react";
+import { useRef, Children, Fragment, isValidElement } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { SectionHeading } from "./Shared";
+import AnimatedSection from "./AnimatedSection";
+function flattenRows(children) {
+  return Children.toArray(children).flatMap((child) =>
+    isValidElement(child) && child.type === Fragment
+      ? flattenRows(child.props.children)
+      : [child],
+  );
+}
 export default function ProjectRow({
   id,
   title,
@@ -43,7 +51,16 @@ export default function ProjectRow({
         tabIndex={0}
         aria-label={`${title} scrollable collection`}
       >
-        {children}
+        {flattenRows(children).map((child, index) => (
+          <AnimatedSection
+            key={child.key ?? index}
+            className="row-item"
+            delay={Math.min(index, 4) * 0.075}
+            variant="depth"
+          >
+            {child}
+          </AnimatedSection>
+        ))}
       </div>
     </section>
   );

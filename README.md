@@ -43,3 +43,11 @@ node generate-assets.mjs "path/to/photo.jpeg"
 Running the script without an argument regenerates only the project SVG illustrations. The site does not require the original photo or access to its drive.
 
 Design concept reference: https://github.com/Sushmitadasari/Netflix_portfolio. This application is independently implemented with Kabijake's supplied content.
+
+## Animation system
+
+Framer Motion powers the intro, hero sequence, viewport reveals, counters, dialogs, and scroll progress. No additional runtime dependencies were needed. `TiltCard` and `MagneticButton` share fine-pointer eligibility through `usePointerMotion`; tracking is frame-batched, spring-smoothed, and cleaned up on unmount. Rotations are limited to 3–5 degrees per axis. Mouse effects are disabled at 850px and below, on coarse pointers, and under reduced motion.
+
+The intro lasts about 2.1 seconds including its fade, runs once per browser-tab session, and is skipped for deep links and reduced motion. Rows reserve their card dimensions during hover; GitHub fragments are flattened so every asynchronously loaded card gets its own entrance. Native dialog focus management remains intact through the closing animation.
+
+For development verification, open `/tests/reduced-motion.html` on the Vite dev server. It simulates the preference before mounting React and applies the application's reduced-motion CSS rules. This harness is outside `public` and is not included in the production build. An actual OS/browser reduced-motion preference is also supported through native media queries.

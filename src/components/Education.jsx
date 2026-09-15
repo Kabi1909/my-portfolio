@@ -1,14 +1,21 @@
+import TiltCard from "./TiltCard";
+import AnimatedSection from "./AnimatedSection";
 import { GraduationCap, MapPin } from "lucide-react";
 import { profile } from "../config/profile";
 import { SectionHeading } from "./Shared";
 export default function Education() {
   return (
-    <section id="education" className="section">
+    <AnimatedSection
+      as="section"
+      variant="depth"
+      id="education"
+      className="section"
+    >
       <SectionHeading
         eyebrow="THE FOUNDATION"
         title="Always a student. Always building."
       />
-      <div className="education-card">
+      <TiltCard className="education-card" strength={3}>
         <div className="education-icon">
           <GraduationCap size={48} />
         </div>
@@ -25,7 +32,7 @@ export default function Education() {
           <i />
           {profile.status}
         </span>
-      </div>
-    </section>
+      </TiltCard>
+    </AnimatedSection>
   );
 }

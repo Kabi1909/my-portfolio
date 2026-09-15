@@ -1,3 +1,5 @@
+import AnimatedNumber from "./AnimatedNumber";
+import AnimatedSection from "./AnimatedSection";
 import { Github, ArrowUpRight } from "lucide-react";
 import { useGitHubUser } from "../hooks/useGitHubRepos";
 import { profile } from "../config/profile";
@@ -5,7 +7,12 @@ import { ExternalLink } from "./Shared";
 export default function GitHubStats() {
   const resource = useGitHubUser();
   return (
-    <section id="github" className="section">
+    <AnimatedSection
+      as="section"
+      variant="rise"
+      id="github"
+      className="section"
+    >
       <div className="github-panel">
         <div>
           <p className="eyebrow">BUILDING IN THE OPEN</p>
@@ -37,7 +44,7 @@ export default function GitHubStats() {
                 ["following", "Following"],
               ].map(([key, label]) => (
                 <div key={key}>
-                  <strong>{resource.data[key]}</strong>
+                  <AnimatedNumber value={resource.data[key]} />
                   <span>{label}</span>
                 </div>
               ))}
@@ -46,6 +53,6 @@ export default function GitHubStats() {
           )}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
