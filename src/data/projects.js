@@ -1,0 +1,94 @@
+export const projects = [
+  {
+    id: "interntrack",
+    title: "InternTrack",
+    category: "CAREERS, CONNECTED",
+    artwork: "/assets/interntrack.svg",
+    color: "#8a5ce6",
+    description:
+      "A MERN-based internship and job tracking platform that helps students and graduates discover opportunities, apply for positions, and track their application progress. Providers can publish vacancies and manage applicants.",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "JWT",
+      "Recharts",
+    ],
+    features: [
+      "Opportunity discovery and applications",
+      "Application progress tracking",
+      "Provider vacancy and applicant management",
+    ],
+    repoName: "InternTrack",
+  },
+  {
+    id: "tripwise",
+    title: "TripWise",
+    category: "YOUR NEXT CHAPTER",
+    artwork: "/assets/tripwise.svg",
+    color: "#46b8b0",
+    description:
+      "A travel management platform designed to help travelers and travel agents explore destinations, plan trips, manage bookings, and receive personalized recommendations.",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+    ],
+    features: [
+      "Destination discovery",
+      "Trip planning and booking management",
+      "Personalized travel recommendations",
+    ],
+    repoName: "TripWise",
+  },
+  {
+    id: "farm2home",
+    title: "Farm2Home LK",
+    category: "FRESH FROM THE SOURCE",
+    artwork: "/assets/farm2home.svg",
+    color: "#a6bc55",
+    description:
+      "A Sri Lankan farmer-to-customer agricultural marketplace that connects farmers directly with customers to buy and sell fresh agricultural products.",
+    technologies: [
+      "MERN Stack",
+      "React.js",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+    ],
+    features: [
+      "Direct farmer-to-customer marketplace",
+      "Product, pricing, and order management",
+      "Delivery and pickup coordination",
+    ],
+    repoName: null,
+  },
+  {
+    id: "boardlk",
+    title: "BoardLK",
+    category: "FIND YOUR PLACE",
+    artwork: "/assets/boardlk.svg",
+    color: "#e4a06d",
+    description:
+      "A smart boarding finder platform for Sri Lanka that helps students and employees find boarding houses while allowing property owners to advertise and manage their properties.",
+    technologies: [
+      "React.js",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Cloudinary",
+      "Maps API",
+    ],
+    features: [
+      "Boarding discovery for students and employees",
+      "Property advertising and management",
+      "Maps and property image support",
+    ],
+    repoName: "BoardLK",
+  },
+];
