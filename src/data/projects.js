@@ -28,6 +28,7 @@ export const projects = [
     title: "TripWise",
     category: "YOUR NEXT CHAPTER",
     artwork: "/assets/tripwise.svg",
+    screenshot: "/assets/tripwise-screen.webp",
     color: "#46b8b0",
     description:
       "A travel management platform designed to help travelers and travel agents explore destinations, plan trips, manage bookings, and receive personalized recommendations.",

@@ -1,3 +1,4 @@
+import DeveloperTimeline from "./DeveloperTimeline";
 import TiltCard from "./TiltCard";
 import AnimatedSection from "./AnimatedSection";
 import { GraduationCap, MapPin } from "lucide-react";
@@ -33,6 +34,7 @@ export default function Education() {
           {profile.status}
         </span>
       </TiltCard>
+      <DeveloperTimeline />
     </AnimatedSection>
   );
 }

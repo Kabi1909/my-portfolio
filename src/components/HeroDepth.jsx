@@ -4,6 +4,7 @@ import {
   useSpring,
   useScroll,
   useTransform,
+  useInView,
 } from "framer-motion";
 import { useEffect, useRef } from "react";
 import { Code2, Github, Atom, Database, Coffee, Braces } from "lucide-react";
@@ -12,14 +13,17 @@ const icons = [Atom, Braces, Code2, Database, Coffee, Github];
 export default function HeroDepth() {
   const enabled = usePointerMotion();
   const ref = useRef(null);
+  const visible = useInView(ref);
   const px = useMotionValue(0),
     py = useMotionValue(0);
   const x = useSpring(px, { stiffness: 70, damping: 24 }),
     y = useSpring(py, { stiffness: 70, damping: 24 });
+  const glowX = useTransform(x, (v) => v * 0.25);
+  const gridX = useTransform(x, (v) => v * 0.5);
   const { scrollY } = useScroll();
   const drift = useTransform(scrollY, [0, 900], [0, 65]);
   useEffect(() => {
-    if (!enabled) {
+    if (!enabled || !visible) {
       px.set(0);
       py.set(0);
       return;
@@ -49,14 +53,16 @@ export default function HeroDepth() {
       hero.removeEventListener("pointermove", move);
       hero.removeEventListener("pointerleave", reset);
     };
-  }, [enabled, px, py]);
+  }, [enabled, visible, px, py]);
   return (
     <motion.div
       ref={ref}
-      className="hero-depth"
+      className={`hero-depth ${visible ? "scene-visible" : ""}`}
       aria-hidden="true"
       style={{ y: enabled ? drift : 0 }}
     >
+      <motion.div className="scene-glow" style={{ x: enabled ? glowX : 0 }} />
+      <motion.div className="scene-grid" style={{ x: enabled ? gridX : 0 }} />
       <motion.div
         className="depth-objects"
         style={{ x: enabled ? x : 0, y: enabled ? y : 0 }}

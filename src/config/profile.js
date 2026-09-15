@@ -10,7 +10,7 @@ export const profile = {
   username: "Kabi1909",
   github: "https://github.com/Kabi1909",
   linkedin: "https://www.linkedin.com/in/kabijake-prathapan-515802328/",
-  email: "", // Add your public email here to enable the email button.
+  email: "kabijakep@gmail.com",
   photo: "/assets/portrait.webp",
   introduction:
     "Hi, I'm Kabijake — a Full-Stack Developer and Information Technology undergraduate at the University of Vavuniya. I build thoughtful, user-friendly web applications that turn real-world challenges into practical software solutions.",

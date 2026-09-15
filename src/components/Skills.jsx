@@ -1,3 +1,4 @@
+import OrbitingSkills from "./OrbitingSkills";
 import TiltCard from "./TiltCard";
 import AnimatedSection from "./AnimatedSection";
 import { Code2, Server, Database, Terminal, Workflow } from "lucide-react";
@@ -22,6 +23,7 @@ export default function Skills() {
         eyebrow="MY DEVELOPER TOOLKIT"
         title="The stack behind the stories."
       />
+      <OrbitingSkills />
       <div className="skill-categories">
         {skills.map((category, i) => {
           const Icon = icons[category.icon];

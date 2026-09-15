@@ -1,3 +1,4 @@
+import HeroParticleNetwork from "./HeroParticleNetwork";
 import { motion, useReducedMotion } from "framer-motion";
 import { Play, ArrowDown, ArrowUpRight, MapPin } from "lucide-react";
 import { profile } from "../config/profile";
@@ -20,6 +21,7 @@ export default function Hero({ ready = true }) {
     <section id="home" className="hero">
       <div className="hero-grid" aria-hidden="true" />
       <HeroDepth />
+      <HeroParticleNetwork />
       <TiltCard className="hero-portrait" strength={5}>
         <img
           src={profile.photo}

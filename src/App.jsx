@@ -3,8 +3,8 @@ import { AnimatePresence, MotionConfig, useReducedMotion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
-import ProjectRow from "./components/ProjectRow";
-import ProjectCard from "./components/ProjectCard";
+import ProjectCoverFlow from "./components/ProjectCoverFlow";
+
 import ProjectModal from "./components/ProjectModal";
 import GitHubProjects from "./components/GitHubProjects";
 import Skills from "./components/Skills";
@@ -25,6 +25,20 @@ export default function App() {
   const finishIntro = useCallback(() => setIntro(false), []);
   const showIntro = intro && !reduced;
   const [selected, setSelected] = useState(null);
+  const featuredProjects = projects.map((p) => {
+    const repo = resource.data?.find(
+      (r) => r.name.toLowerCase() === p.repoName?.toLowerCase(),
+    );
+    return {
+      ...p,
+      github: repo
+        ? safeUrl(repo.html_url)
+        : p.repoName
+          ? `${profile.github}/${p.repoName}`
+          : null,
+      live: repo ? safeUrl(repo.homepage) : null,
+    };
+  });
   return (
     <MotionConfig reducedMotion="user">
       <AnimatePresence>
@@ -38,34 +52,10 @@ export default function App() {
         <Navbar />
         <main id="main">
           <Hero ready={!showIntro} />
-          <ProjectRow
-            id="projects"
-            title="Featured Projects"
-            eyebrow="BUILT WITH PURPOSE · CRAFTED WITH CODE"
-            className="featured"
-          >
-            {projects.map((p, index) => {
-              const repo = resource.data?.find(
-                (r) => r.name.toLowerCase() === p.repoName?.toLowerCase(),
-              );
-              return (
-                <ProjectCard
-                  key={p.id}
-                  project={{
-                    ...p,
-                    github: repo
-                      ? safeUrl(repo.html_url)
-                      : p.repoName
-                        ? `${profile.github}/${p.repoName}`
-                        : null,
-                    live: repo ? safeUrl(repo.homepage) : null,
-                  }}
-                  index={index}
-                  onSelect={setSelected}
-                />
-              );
-            })}
-          </ProjectRow>
+          <ProjectCoverFlow
+            projects={featuredProjects}
+            onSelect={setSelected}
+          />
           <About />
           <GitHubProjects resource={resource} onSelect={setSelected} />
           <Skills />
