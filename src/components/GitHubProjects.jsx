@@ -2,7 +2,18 @@ import ProjectRow from "./ProjectRow";
 import GitHubProjectCard from "./GitHubProjectCard";
 import { ExternalLink } from "./Shared";
 import { profile } from "../config/profile";
+const hiddenRepositories = new Set([
+  "unisportsbackend",
+  "unisportshubbackend",
+  "operatingsystem",
+  "daa",
+  "webservices",
+]);
+
 export default function GitHubProjects({ resource, onSelect }) {
+  const visibleRepositories = resource.data?.filter(
+    (repo) => !hiddenRepositories.has(repo.name.toLowerCase().replace(/[-_]/g, "")),
+  );
   return (
     <ProjectRow
       title="More from My GitHub"
@@ -33,8 +44,8 @@ export default function GitHubProjects({ resource, onSelect }) {
               Showing cached repositories while GitHub is unavailable.
             </p>
           )}
-          {resource.data?.length ? (
-            resource.data.map((repo) => (
+          {visibleRepositories?.length ? (
+            visibleRepositories.map((repo) => (
               <GitHubProjectCard
                 key={repo.id}
                 repo={repo}

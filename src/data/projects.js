@@ -3,7 +3,7 @@ export const projects = [
     id: "interntrack",
     title: "InternTrack",
     category: "CAREERS, CONNECTED",
-    artwork: "/assets/interntrack.svg",
+    artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/interntrack.svg`,
     color: "#8a5ce6",
     description:
       "A MERN-based internship and job tracking platform that helps students and graduates discover opportunities, apply for positions, and track their application progress. Providers can publish vacancies and manage applicants.",
@@ -27,8 +27,8 @@ export const projects = [
     id: "tripwise",
     title: "TripWise",
     category: "YOUR NEXT CHAPTER",
-    artwork: "/assets/tripwise.svg",
-    screenshot: "/assets/tripwise-screen.webp",
+    artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/tripwise.svg`,
+    screenshot: `${import.meta.env?.BASE_URL ?? "/"}assets/tripwise-screen.webp`,
     color: "#46b8b0",
     description:
       "A travel management platform designed to help travelers and travel agents explore destinations, plan trips, manage bookings, and receive personalized recommendations.",
@@ -50,7 +50,7 @@ export const projects = [
     id: "farm2home",
     title: "Farm2Home LK",
     category: "FRESH FROM THE SOURCE",
-    artwork: "/assets/farm2home.svg",
+    artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/farm2home.svg`,
     color: "#a6bc55",
     description:
       "A Sri Lankan farmer-to-customer agricultural marketplace that connects farmers directly with customers to buy and sell fresh agricultural products.",
@@ -72,7 +72,7 @@ export const projects = [
     id: "boardlk",
     title: "BoardLK",
     category: "FIND YOUR PLACE",
-    artwork: "/assets/boardlk.svg",
+    artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/boardlk.svg`,
     color: "#e4a06d",
     description:
       "A smart boarding finder platform for Sri Lanka that helps students and employees find boarding houses while allowing property owners to advertise and manage their properties.",

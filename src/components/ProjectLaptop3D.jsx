@@ -1,7 +1,9 @@
+import usePointerMotion from "../hooks/usePointerMotion";
 import { motion, useReducedMotion } from "framer-motion";
 import TiltCard from "./TiltCard";
 export default function ProjectLaptop3D({ project }) {
   const reduced = useReducedMotion();
+  const desktopMotion = usePointerMotion();
   return (
     <figure className="laptop-showcase">
       <motion.div
@@ -10,7 +12,12 @@ export default function ProjectLaptop3D({ project }) {
         initial={
           reduced
             ? false
-            : { rotateX: 12, rotateY: -12, scale: 0.94, opacity: 0 }
+            : {
+                rotateX: desktopMotion ? 12 : 4,
+                rotateY: desktopMotion ? -12 : -4,
+                scale: 0.94,
+                opacity: 0,
+              }
         }
         whileInView={{ rotateX: 0, rotateY: 0, scale: 1, opacity: 1 }}
         viewport={{ once: true, amount: 0.25 }}

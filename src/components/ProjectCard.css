@@ -1,0 +1,59 @@
+/* Featured-card interaction only; the carousel positions and reserved sizes stay fixed. */
+@media (hover: hover) and (pointer: fine) and (min-width: 851px) and (prefers-reduced-motion: no-preference) {
+  #projects .project-card {
+    transition: scale 320ms ease, translate 320ms ease, box-shadow 320ms ease, border-color 320ms ease;
+  }
+  #projects .project-card:is(:hover, :focus-within) {
+    scale: 1.05;
+    translate: 0 -6px;
+    border-color: #ed182566;
+    box-shadow: 0 26px 52px #000b, 0 0 0 1px #ed182529, 0 0 28px #ed18251a;
+  }
+  #projects .project-card .project-art > img {
+    transition: transform 350ms ease, filter 350ms ease;
+  }
+  #projects .project-card:is(:hover, :focus-within) .project-art > img {
+    transform: scale(1.08);
+    filter: brightness(1.04) contrast(1.04);
+  }
+  #projects .project-card .project-art::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 25%, #0009);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 320ms ease;
+    z-index: 1;
+  }
+  #projects .project-card:is(:hover, :focus-within) .project-art::before { opacity: .55; }
+  #projects .project-card .art-title { transition: transform 320ms ease; }
+  #projects .project-card:is(:hover, :focus-within) .art-title { transform: translateY(-5px) translateZ(25px); }
+  #projects .project-card .card-details > p,
+  #projects .project-card .card-summary .tags > span,
+  #projects .project-card .card-details > .details-link,
+  #projects .project-card .project-links > * {
+    transition: opacity 280ms ease, translate 280ms ease;
+    transition-delay: 0ms;
+  }
+  #projects .project-card:not(:hover):not(:focus-within) .card-details > p { opacity: .65; translate: 0 4px; }
+  #projects .project-card:not(:hover):not(:focus-within) .card-summary .tags > span { opacity: .7; translate: 0 3px; }
+  #projects .project-card:not(:hover):not(:focus-within) .card-details > .details-link,
+  #projects .project-card:not(:hover):not(:focus-within) .project-links > * { opacity: .55; translate: 0 5px; }
+  #projects .project-card .card-details .project-links { opacity: 1; transform: none; }
+  #projects .project-card:is(:hover, :focus-within) .card-details > p,
+  #projects .project-card:is(:hover, :focus-within) .card-summary .tags > span,
+  #projects .project-card:is(:hover, :focus-within) .card-details > .details-link,
+  #projects .project-card:is(:hover, :focus-within) .project-links > * { opacity: 1; translate: 0 0; }
+  #projects .project-card:is(:hover, :focus-within) .card-summary .tags > span:nth-child(2) { transition-delay: 35ms; }
+  #projects .project-card:is(:hover, :focus-within) .card-summary .tags > span:nth-child(3) { transition-delay: 65ms; }
+  #projects .project-card:is(:hover, :focus-within) .card-details > .details-link { transition-delay: 35ms; }
+  #projects .project-card:is(:hover, :focus-within) .project-links > :nth-child(1) { transition-delay: 70ms; }
+  #projects .project-card:is(:hover, :focus-within) .project-links > :nth-child(2) { transition-delay: 105ms; }
+  #projects .project-card > .tilt-reflection {
+    background: radial-gradient(circle at var(--light-x, 50%) var(--light-y, 30%), #ffffff18, transparent 58%);
+    transition: opacity 320ms ease;
+  }
+}
+/* Keep the card's projected surface available for pointer hit testing. */
+#projects .coverflow-card-content { transform-style: preserve-3d; }

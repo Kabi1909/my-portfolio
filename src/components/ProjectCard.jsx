@@ -1,10 +1,11 @@
+import "./ProjectCard.css";
 import TiltCard from "./TiltCard";
 import { ArrowUpRight, Play } from "lucide-react";
 import { ProjectLinks } from "./Shared";
 export default function ProjectCard({ project, index, onSelect }) {
   return (
     <TiltCard
-      as="article"
+      as="article" strength={4}
       className="project-card"
       style={{ "--project-color": project.color }}
     >

@@ -1,12 +1,16 @@
+import usePointerMotion from "../hooks/usePointerMotion";
 import { useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 import ProjectCard from "./ProjectCard";
 import ProjectLaptop3D from "./ProjectLaptop3D";
 import { SectionHeading, ProjectLinks } from "./Shared";
 export default function ProjectCoverFlow({ projects, onSelect }) {
   const [active, setActive] = useState(0);
+  const sectionRef = useRef(null);
+  const entered = useInView(sectionRef, { once: true, amount: 0.2 });
   const reduced = useReducedMotion();
+  const desktopMotion = usePointerMotion();
   const start = useRef(null);
   const gesture = useRef(false);
   const project = projects[active];
@@ -14,12 +18,14 @@ export default function ProjectCoverFlow({ projects, onSelect }) {
     setActive((i) => (i + delta + projects.length) % projects.length);
   return (
     <section
+      ref={sectionRef}
       id="projects"
       className="project-section featured coverflow-section"
       aria-roledescription="carousel"
       aria-label="Featured Projects"
     >
       <SectionHeading
+        reveal={entered}
         title="Featured Projects"
         eyebrow="BUILT WITH PURPOSE · CRAFTED WITH CODE"
       >
@@ -96,8 +102,12 @@ export default function ProjectCoverFlow({ projects, onSelect }) {
                   : distance === 0
                     ? 0
                     : distance < 0
-                      ? 22
-                      : -22,
+                      ? desktopMotion
+                        ? 22
+                        : 8
+                      : desktopMotion
+                        ? -22
+                        : -8,
                 z: reduced ? 0 : selected ? 35 : -45,
                 scale: selected ? 1 : 0.86,
                 opacity: Math.abs(distance) > 1 ? 0 : selected ? 1 : 0.66,
@@ -109,12 +119,41 @@ export default function ProjectCoverFlow({ projects, onSelect }) {
               aria-hidden={Math.abs(distance) > 1 ? true : undefined}
               inert={Math.abs(distance) > 1 ? true : undefined}
             >
-              <div
+              <motion.div
+                initial={
+                  reduced
+                    ? false
+                    : {
+                        opacity: 0,
+                        y: desktopMotion ? 40 : 20,
+                        scale: desktopMotion ? 0.94 : 1,
+                        rotateX: desktopMotion ? 5 : 0,
+                        filter: desktopMotion ? "blur(3px)" : "none",
+                      }
+                }
+                animate={
+                  reduced || entered
+                    ? {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        rotateX: 0,
+                        filter:
+                          desktopMotion && !reduced ? "blur(0px)" : "none",
+                        transitionEnd: { filter: "none" },
+                      }
+                    : { opacity: 0, y: desktopMotion ? 40 : 20, scale: desktopMotion ? 0.94 : 1, rotateX: desktopMotion ? 5 : 0, filter: desktopMotion ? "blur(3px)" : "none", transition: { duration: 0, delay: 0 } }
+                }
+                transition={{
+                  duration: reduced ? 0 : desktopMotion ? 0.65 : 0.45,
+                  delay: reduced ? 0 : 0.55 + index * 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 className="coverflow-card-content"
                 inert={!selected ? true : undefined}
               >
                 <ProjectCard project={item} index={index} onSelect={onSelect} />
-              </div>
+              </motion.div>
               {!selected && (
                 <button
                   className="coverflow-select"

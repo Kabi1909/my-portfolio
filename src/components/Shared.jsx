@@ -28,15 +28,23 @@ export function SocialLinks({ labels = false }) {
     </>
   );
 }
-export function SectionHeading({ eyebrow, title, children }) {
+export function SectionHeading({ eyebrow, title, children, reveal }) {
   const reduced = useReducedMotion();
   return (
     <motion.div
       className="section-heading"
       initial={reduced ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={
+        reveal === undefined
+          ? undefined
+          : {
+              opacity: reduced || reveal ? 1 : 0,
+              y: reduced || reveal ? 0 : 16,
+            }
+      }
+      whileInView={reveal === undefined ? { opacity: 1, y: 0 } : undefined}
       viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
+      transition={reveal === undefined ? { duration: 0.6 } : { duration: reduced ? 0 : 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div>
         <p className="eyebrow">{eyebrow}</p>
@@ -44,7 +52,12 @@ export function SectionHeading({ eyebrow, title, children }) {
         <motion.span
           className="heading-accent"
           initial={{ scaleX: reduced ? 1 : 0 }}
-          whileInView={{ scaleX: 1 }}
+          animate={
+            reveal === undefined
+              ? undefined
+              : { scaleX: reduced || reveal ? 1 : 0 }
+          }
+          whileInView={reveal === undefined ? { scaleX: 1 } : undefined}
           viewport={{ once: true }}
           transition={{
             delay: reduced ? 0 : 0.2,
