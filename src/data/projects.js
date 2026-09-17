@@ -4,6 +4,7 @@ export const projects = [
     title: "InternTrack",
     category: "CAREERS, CONNECTED",
     artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/interntrack.svg`,
+    screenshot: `${import.meta.env?.BASE_URL ?? "/"}assets/interntrack-screen.webp`,
     color: "#8a5ce6",
     description:
       "A MERN-based internship and job tracking platform that helps students and graduates discover opportunities, apply for positions, and track their application progress. Providers can publish vacancies and manage applicants.",
@@ -73,6 +74,7 @@ export const projects = [
     title: "BoardLK",
     category: "FIND YOUR PLACE",
     artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/boardlk.svg`,
+    screenshot: `${import.meta.env?.BASE_URL ?? "/"}assets/boardlk-screen.webp`,
     color: "#e4a06d",
     description:
       "A smart boarding finder platform for Sri Lanka that helps students and employees find boarding houses while allowing property owners to advertise and manage their properties.",
