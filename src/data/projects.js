@@ -52,6 +52,7 @@ export const projects = [
     title: "Farm2Home LK",
     category: "FRESH FROM THE SOURCE",
     artwork: `${import.meta.env?.BASE_URL ?? "/"}assets/farm2home.svg`,
+    screenshot: `${import.meta.env?.BASE_URL ?? "/"}assets/farm2home-screen.webp`,
     color: "#a6bc55",
     description:
       "A Sri Lankan farmer-to-customer agricultural marketplace that connects farmers directly with customers to buy and sell fresh agricultural products.",
