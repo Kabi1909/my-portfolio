@@ -11,6 +11,7 @@ export const profile = {
   github: "https://github.com/Kabi1909",
   linkedin: "https://www.linkedin.com/in/kabijake-prathapan-515802328/",
   email: "kabijakep@gmail.com",
+  cv: `${import.meta.env?.BASE_URL ?? "/"}documents/P-Kabijake-CV.pdf`,
   photo: `${import.meta.env?.BASE_URL ?? "/"}assets/portrait.webp`,
   introduction:
     "Hi, I'm Kabijake — a Full-Stack Developer and Information Technology undergraduate at the University of Vavuniya. I build thoughtful, user-friendly web applications that turn real-world challenges into practical software solutions.",

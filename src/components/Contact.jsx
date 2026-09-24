@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
-import { Mail, ArrowUpRight } from "lucide-react";
+import { Mail, ArrowUpRight, Download } from "lucide-react";
 import { profile } from "../config/profile";
 import { SocialLinks } from "./Shared";
 export default function Contact() {
@@ -31,6 +31,10 @@ export default function Contact() {
       </motion.p>
       <motion.div className="contact-links" {...reveal(0.3)}>
         <SocialLinks labels />
+        <a href={profile.cv} download="P-Kabijake-CV.pdf" aria-label="Download CV (PDF)">
+          <Download size={18} aria-hidden="true" />
+          Download CV
+        </a>
         {profile.email ? (
           <a href={`mailto:${profile.email}`}>
             <Mail size={18} />
